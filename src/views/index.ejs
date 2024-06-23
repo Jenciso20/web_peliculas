@@ -3,11 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= title %></title>
+    <title>Movie Hub</title>
+    <%- include ('partials/head') %>
 </head>
 <body>
     <%- include('partials/navigation') %>
-    <h1>Hola</h1>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Bienvenido a Movie Hub</h1>
+            <p>Descubre las mejores películas de todos los géneros.</p>
+            <a href="#latest-movies" class="btn">Ver Últimas Películas</a>
+        </div>
+    </header>
+
+    <main class="container">
+        <section id="latest-movies" class="section">
+            <h2>Últimas Películas</h2>
+            <p>Aquí podrás encontrar las películas más recientes y populares.</p>
+        </section>
+
+        <section class="section">
+            <h2>Géneros Populares</h2>
+            <div class="genres">
+                <div class="genre-card">Acción</div>
+                <div class="genre-card">Comedia</div>
+                <div class="genre-card">Drama</div>
+                <div class="genre-card">Terror</div>
+                <div class="genre-card">Ciencia Ficción</div>
+            </div>
+        </section>
+    </main>
+
     <%- include('partials/footer') %>
 </body>
 </html>
