@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <%- include('partials/head') %>
+</head>
+<body>
+    <%- include('partials/navigation') %>
+    
+    <h1>Catálogo</h1>
+    <div id="mostrarPeliculas">
+
+    <script>
+        async function getPeliculas(){
+            try{
+                const response= await fetch('http://localhost:3000/api/get-peliculas',{
+                    method: 'GET',
+                    headers:{'Content-Type': 'application/json'},
+
+                })
+                if(response.ok){
+                    const peliculas= await response.json();
+                    console.log("Películas encontradas:")
+                    console.log(peliculas);
+                    mostrarPeliculas(peliculas)
+                    
+                }
+            }catch(error){
+
+            }
+            
+        }
+        function mostrarPeliculas(peliculas){
+            const mostrarPeliculasDiv= document.getElementById('mostrarPeliculas');
+            mostrarPeliculasDiv.innerHTML=''
+            peliculas.forEach(pelicula=>{
+                const peliculaDiv= document.createElement('div')
+                peliculaDiv.classList.add('pelicula')
+                const titulo= document.createElement('h1')
+                titulo.textContent= pelicula.titulo
+                const imagen= document.createElement('img')
+                imagen.src= pelicula.url
+                imagen.alt= pelicula.titulo
+    
+
+                peliculaDiv.appendChild(titulo)
+                peliculaDiv.appendChild(imagen)
+                mostrarPeliculasDiv.appendChild(peliculaDiv)
+            })
+        }
+        window.addEventListener('DOMContentLoaded', getPeliculas);
+    </script>
+
+
+
+    <footer class="footer">
+        <%- include('partials/footer') %>
+    </footer>
+</body>
+</html>
